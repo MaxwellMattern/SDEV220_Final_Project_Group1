@@ -16,6 +16,7 @@ TOOLS_ICON_PADDING = (2,5,5,5)#Left,Up,Right,Down
 TOOLS_BAR_SCALER = 40
 CANVAS_PADDING =(10,5,5,5)#Left,Up,Right,Down
 CANVAS_ITEM_PADDING =(5,5,5,5)#Left,Up,Right,Down
+CANVAS_SCALER = 50
 #Keybinds
 KEY_CIRCLE = 'Q'
 KEY_DIAMOND = 'W'
@@ -27,7 +28,7 @@ KEY_WAVY_RECT = 'U'
 
 
 #Test Variables
-flowchart = ['Q','q','W','E','R','T','Y','U']
+flowchart = ['Q','w']
 
 #Declare root & set basic properties
 root = tk.Tk()
@@ -37,22 +38,31 @@ root.geometry("500x385")
 
 
 #Load Images
-circleIconImg = 	Image.open(CIRCLE).resize((		1*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
-diamondIconImg = 	Image.open(DIAMOND).resize((	2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
-ovalIconImg = 		Image.open(OVAL).resize((		2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
-rectIconImg = 		Image.open(RECT).resize((		2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
-risingRectIconImg = Image.open(RISING_RECT).resize((2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
-trapizoidIconImg = 	Image.open(TRAPIZOID).resize((	2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
-wavyRectIconImg = 	Image.open(WAVY_RECT).resize((	2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER))
+circleIconImg = 	Image.open(CIRCLE)
+diamondIconImg = 	Image.open(DIAMOND)
+ovalIconImg = 		Image.open(OVAL)
+rectIconImg = 		Image.open(RECT)
+risingRectIconImg = Image.open(RISING_RECT)
+trapizoidIconImg = 	Image.open(TRAPIZOID)
+wavyRectIconImg = 	Image.open(WAVY_RECT)
 #Convert Image to PhotoImage (Readable by Label)
-circleIconLab = 	ImageTk.PhotoImage(circleIconImg)
-diamondIconLab = 	ImageTk.PhotoImage(diamondIconImg)
-ovalIconLab = 		ImageTk.PhotoImage(ovalIconImg)
-rectIconLab = 		ImageTk.PhotoImage(rectIconImg)
-risingRectIconLab = ImageTk.PhotoImage(risingRectIconImg)
-trapizoidIconLab = 	ImageTk.PhotoImage(trapizoidIconImg)
-wavyRectIconLab = 	ImageTk.PhotoImage(wavyRectIconImg)
-
+#For Tool Bar
+circleIconLab = 	ImageTk.PhotoImage(circleIconImg.resize((		1*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+diamondIconLab = 	ImageTk.PhotoImage(diamondIconImg.resize((		2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+ovalIconLab = 		ImageTk.PhotoImage(ovalIconImg.resize((			2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+rectIconLab = 		ImageTk.PhotoImage(rectIconImg.resize((			2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+risingRectIconLab = ImageTk.PhotoImage(risingRectIconImg.resize((	2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+trapizoidIconLab = 	ImageTk.PhotoImage(trapizoidIconImg.resize((	2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+wavyRectIconLab = 	ImageTk.PhotoImage(wavyRectIconImg.resize((		2*TOOLS_BAR_SCALER, 1*TOOLS_BAR_SCALER)))
+#For Canvas
+circleLab = 	ImageTk.PhotoImage(circleIconImg.resize((		1*CANVAS_SCALER, 1*CANVAS_SCALER)))
+diamondLab = 	ImageTk.PhotoImage(diamondIconImg.resize((		2*CANVAS_SCALER, 1*CANVAS_SCALER)))
+ovalLab = 		ImageTk.PhotoImage(ovalIconImg.resize((			2*CANVAS_SCALER, 1*CANVAS_SCALER)))
+rectLab = 		ImageTk.PhotoImage(rectIconImg.resize((			2*CANVAS_SCALER, 1*CANVAS_SCALER)))
+risingRectLab = ImageTk.PhotoImage(risingRectIconImg.resize((	2*CANVAS_SCALER, 1*CANVAS_SCALER)))
+trapizoidLab = 	ImageTk.PhotoImage(trapizoidIconImg.resize((	2*CANVAS_SCALER, 1*CANVAS_SCALER)))
+wavyRectLab = 	ImageTk.PhotoImage(wavyRectIconImg.resize((		2*CANVAS_SCALER, 1*CANVAS_SCALER)))
+#For Canvas
 
 
 
@@ -63,24 +73,25 @@ canvasFrame = ttk.Frame(root,padding=CANVAS_PADDING)
 def update(flowchart=['']):
 	for i, item in enumerate(flowchart):
 		if(item.upper()==KEY_CIRCLE):
-			itemLabel = ttk.Label(canvasFrame, image=circleIconLab,		padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=circleLab,		padding=CANVAS_ITEM_PADDING)
 		elif(item.upper()==KEY_DIAMOND):
-			itemLabel = ttk.Label(canvasFrame, image=diamondIconLab,	padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=diamondLab,	padding=CANVAS_ITEM_PADDING)
 		elif(item.upper()==KEY_OVAL):
-			itemLabel = ttk.Label(canvasFrame, image=ovalIconLab,		padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=ovalLab,		padding=CANVAS_ITEM_PADDING)
 		elif(item.upper()==KEY_RECT):
-			itemLabel = ttk.Label(canvasFrame, image=rectIconLab,		padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=rectLab,		padding=CANVAS_ITEM_PADDING)
 		elif(item.upper()==KEY_RISING_RECT):
-			itemLabel = ttk.Label(canvasFrame, image=risingRectIconLab,	padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=risingRectLab,	padding=CANVAS_ITEM_PADDING)
 		elif(item.upper()==KEY_TRAPIZOID):
-			itemLabel = ttk.Label(canvasFrame, image=trapizoidIconLab,	padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=trapizoidLab,	padding=CANVAS_ITEM_PADDING)
 		elif(item.upper()==KEY_WAVY_RECT):
-			itemLabel = ttk.Label(canvasFrame, image=wavyRectIconLab,	padding=CANVAS_ITEM_PADDING)
+			itemLabel = ttk.Label(canvasFrame, image=wavyRectLab,	padding=CANVAS_ITEM_PADDING)
 
 		itemLabel.grid(column=0,row=i)
 
 
 """Update (Advanced) Flowchart Canvas"""
+# ****Experimental****
 #This expects the format of:
 #        [
 #            [
@@ -155,7 +166,8 @@ wavyRectLabel.grid(		column=0,row=6)
 
 
 """ Load flowchart **For Testing Purposes** """
-# update(flowchart)
+update(flowchart)
+update(flowchart)
 
 
 """Place frames in root"""
